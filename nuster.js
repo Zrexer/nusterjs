@@ -16,15 +16,15 @@ const fs = require('fs');
 const clc = require('./colors');
 
 const pos = (_) => {
-    console.log(clc.white('[') + clc.green('+') + clc.white(']') + clc.white(' [') + clc.green(`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`) + clc.white(']') + ` ${_}`);
+    console.log(clc.white('[') + clc.green(' + ') + clc.white(']') + clc.white(' [') + clc.green(`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`) + clc.white(']') + ` ${_}`);
 }
 
 const neg = (_) => {
-    console.log(clc.white('[') + clc.red('-') + clc.white(']') + clc.white(' [') + clc.green(`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`) + clc.white(']') + ` ${_}`);
+    console.log(clc.white('[') + clc.red(' - ') + clc.white(']') + clc.white(' [') + clc.green(`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`) + clc.white(']') + ` ${_}`);
 }
 
 const action = (_) => {
-    console.log(clc.white('[') + clc.blue('*') + clc.white(']') + clc.white(' [') + clc.green(`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`) + clc.white(']') + ` ${_}`);
+    console.log(clc.white('[') + clc.blue(' * ') + clc.white(']') + clc.white(' [') + clc.green(`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`) + clc.white(']') + ` ${_}`);
 }
 
 const arrayWord = ['admin', 'admin.php', 'support', 'support.php', 'login', 'login.php'];
