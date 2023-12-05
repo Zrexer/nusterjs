@@ -28,8 +28,7 @@ const action = (_) => {
 }
 
 const arrayWord = ['admin', 'admin.php', 'support', 'support.php', 'login', 'login.php'];
-
-
+const newArray = [];
 
 if (argv.includes('-u')){
     action('Nuster Running ' + clc.red('_<') + clc.white('N') + clc.red('>_'));
@@ -45,6 +44,7 @@ if (argv.includes('-u')){
         if (argv.includes('-o')){
             action('Try To Find a Path or Filename <wordlist>');
             const fpn = argv[argv.indexOf('-o')+1];
+            
 
             // if user set path or name
             if (fpn !== undefined){
@@ -56,17 +56,28 @@ if (argv.includes('-u')){
                     }
 
                     const da = data.split("\n")
-                    
-                    da.forEach((line) => {
-                        https.get(`${url}/${line}`, (res) => {
+
+                    // newArray.push(da)
+                    da.forEach((dataline) => {
+                        newArray.push(String(dataline).split('\r')[0]);
+                    })
+                    for (let ix = 0; ix < newArray.length; ix++){
+                        https.get(`${url}/${newArray[ix]}`, (res) => {
                             if (res.statusCode === 200){
-                                pos("Domain: " + clc.yellow(line) + " Status: " + clc.yellow(res.statusCode));
+                                pos("Domain: " + clc.yellow(`${newArray[ix]}`) + " Status: " + clc.yellow(res.statusCode));
                             }else{
-                                neg("Domain: " + clc.blue(line) + " Status: " + clc.blue(res.statusCode));
+                                neg("Domain: " + clc.blue(`${newArray[ix]}`) + " Status: " + clc.blue(res.statusCode))
                             }
                         });
-                    })
+                    }
+                    
                 });
+
+                // const da = data.split("\n")
+                    
+                
+            
+                
 
             // if user not set path or name
             }else{
@@ -114,16 +125,21 @@ if (argv.includes('-u')){
                         }
     
                         const da = data.split("\n")
-                        
-                        da.forEach((line) => {
-                            http.get(`${url}/${line}`, (res) => {
-                                if (res.statusCode == 200){
-                                    pos("Domain: " + clc.yellow(line) + " Status: " + clc.yellow(res.statusCode));
-                                }else{
-                                    neg("Domain: " + clc.blue(line) + " Status: " + clc.blue(res.statusCode));
-                                }
-                            })
+    
+                        // newArray.push(da)
+                        da.forEach((dataline) => {
+                            newArray.push(String(dataline).split('\r')[0]);
                         })
+                        for (let ix = 0; ix < newArray.length; ix++){
+                            http.get(`${url}/${newArray[ix]}`, (res) => {
+                                if (res.statusCode === 200){
+                                    pos("Domain: " + clc.yellow(`${newArray[ix]}`) + " Status: " + clc.yellow(res.statusCode));
+                                }else{
+                                    neg("Domain: " + clc.blue(`${newArray[ix]}`) + " Status: " + clc.blue(res.statusCode))
+                                }
+                            });
+                        }
+                        
                     });
     
                 // if user not set path or name
