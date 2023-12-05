@@ -39,6 +39,7 @@ if (argv.includes('-u')){
 
     if (url !== undefined && url.startsWith('https')){
         pos('Type: HTTPS');
+        console.log();
 
         // if set -o switch
         if (argv.includes('-o')){
@@ -49,7 +50,6 @@ if (argv.includes('-u')){
             // if user set path or name
             if (fpn !== undefined){
                 pos("WordList: " + clc.red(fpn));
-                console.log();
                 fs.readFile(fpn, 'utf-8', (err, data) => {
                     if (err){
                         neg(`Error: ${err}`);
@@ -61,6 +61,7 @@ if (argv.includes('-u')){
                     da.forEach((dataline) => {
                         newArray.push(String(dataline).split('\r')[0]);
                     })
+                    console.log();
                     for (let ix = 0; ix < newArray.length; ix++){
                         https.get(`${url}/${newArray[ix]}`, (res) => {
                             if (res.statusCode === 200){
@@ -83,6 +84,7 @@ if (argv.includes('-u')){
             }else{
                 neg('Cannot Find WordList path or name');
                 action('Continue With the Nuster WordList');
+                console.log();
                 for (let i = 0; i < arrayWord.length; i++){
                     https.get(`${url}/${arrayWord[i]}`, (res) => {
                         if (res.statusCode === 200){
@@ -95,6 +97,7 @@ if (argv.includes('-u')){
             }
         // if not set -o switch
         }else{
+            console.log();
             for (let i = 0; i < arrayWord.length; i++){
                 https.get(`${url}/${arrayWord[i]}`, (res) => {
                     if (res.statusCode === 200){
@@ -130,6 +133,7 @@ if (argv.includes('-u')){
                         da.forEach((dataline) => {
                             newArray.push(String(dataline).split('\r')[0]);
                         })
+                        console.log();
                         for (let ix = 0; ix < newArray.length; ix++){
                             http.get(`${url}/${newArray[ix]}`, (res) => {
                                 if (res.statusCode === 200){
@@ -146,6 +150,7 @@ if (argv.includes('-u')){
                 }else{
                     neg('Cannot Find WordList path or name');
                     action('Continue With the Nuster WordList');
+                    console.log();
                     for (let i = 0; i < arrayWord.length; i++){
                         http.get(`${url}/${arrayWord[i]}`, (res) => {
                             if (res.statusCode === 200){
@@ -158,6 +163,7 @@ if (argv.includes('-u')){
                 }
             // if not set -o switch
             }else{
+                console.log();
                 for (let i = 0; i < arrayWord.length; i++){
                     http.get(`${url}/${arrayWord[i]}`, (res) => {
                         if (res.statusCode === 200){
