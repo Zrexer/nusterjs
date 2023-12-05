@@ -59,7 +59,11 @@ if (argv.includes('-u')){
 
                     // newArray.push(da)
                     da.forEach((dataline) => {
-                        newArray.push(String(dataline).split('\r')[0]);
+                        if (dataline.endsWith('\r')){
+                            newArray.push(String(dataline).split('\r')[0]);
+                        }else{
+                            newArray.push(String(dataline));
+                        }
                     })
                     console.log();
                     for (let ix = 0; ix < newArray.length; ix++){
@@ -131,7 +135,11 @@ if (argv.includes('-u')){
     
                         // newArray.push(da)
                         da.forEach((dataline) => {
-                            newArray.push(String(dataline).split('\r')[0]);
+                            if (dataline.endsWith('\r')){
+                                newArray.push(String(dataline).split('\r')[0]);
+                            }else{
+                                newArray.push(String(dataline));
+                            }
                         })
                         console.log();
                         for (let ix = 0; ix < newArray.length; ix++){
